@@ -2,8 +2,8 @@
 
 ### Contacts:
 
-**Phone**: +7 351 432-85-73
-**Email**: danil.danilov@gmail.com
+- **Phone**: +7 351 432-85-73
+- **Email**: danil.danilov@gmail.com
 
 ### About Me:
 
