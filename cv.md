@@ -3,6 +3,7 @@
 ## Contacts
 * [Discord](https://discord.com/users/196578277882593281/)
 * [GitHub](https://github.com/probluesea)
+
 ## Briefly about me
 > I am a novice JavaScript developer who really wants to make my first website.
 > I have experience with HTML, CSS, PHP and MySQL, but I have never programmed in JavaScript.
