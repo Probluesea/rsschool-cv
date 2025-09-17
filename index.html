@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <div>
+          <h1>Danila Danilov</h1>
+          <p>About me:</p>
+          <ol>
+            <li>Discord/tg/steam: probluesea</li>
+            <li>This isn't my first time going through this, and I hope this time will be the last</li>
+            <li>HTML, CSS, JS, Git, GitHub, Figma</li>
+            <li>
+              <code>const func = (num) => { if (num > 0) { return num - 1; } return num + 1; };</code>
+            </li>
+            <li>First, I took Udemy courses by Jonas Schmedtmann, then I went through RS School several times</li>
+            <li>Secondary specialized educational institution</li>
+            <li>Confident use of Deepl</li>
+          </ol>
+        </div>
+      </section>
+      <div class="keypad">
+        <div class="keypad__base">
+          <img src="https://assets.codepen.io/605876/keypad-base.png?format=auto&quality=86" alt="" />
+        </div>
+        <button id="one" class="key keypad__single keypad__single--left">
+          <span class="key__mask">
+            <span class="key__content">
+              <span class="key__text">C</span>
+              <img src="https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86" alt="" />
+            </span>
+          </span>
+        </button>
+        <button id="two" class="key keypad__single">
+          <span class="key__mask">
+            <span class="key__content">
+              <span class="key__text">V</span>
+              <img src="https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86" alt="" />
+            </span>
+          </span>
+        </button>
+        <button id="three" class="key keypad__double">
+          <span class="key__mask">
+            <span class="key__content">
+              <span class="key__text">Ctrl</span>
+              <img src="https://assets.codepen.io/605876/keypad-double.png?format=auto&quality=86" alt="" />
+            </span>
+          </span>
+        </button>
+      </div>
+    </main>
+    <script type="module">
+      const config = {
+        theme: 'system',
+        muted: false,
+        exploded: false,
+        one: {
+          travel: 26,
+          text: 'C',
+          key: 'c',
+          hue: 0,
+          saturation: 1,
+          brightness: 1,
+          buttonElement: document.querySelector('#one'),
+          textElement: document.querySelector('#one .key__text'),
+        },
+        two: {
+          travel: 26,
+          text: 'V',
+          key: 'v',
+          hue: 0,
+          saturation: 0,
+          brightness: 1.4,
+          buttonElement: document.querySelector('#two'),
+          textElement: document.querySelector('#two .key__text'),
+        },
+        three: {
+          travel: 18,
+          text: 'Ctrl',
+          key: 'Control',
+          hue: 0,
+          saturation: 0,
+          brightness: 0.4,
+          buttonElement: document.querySelector('#three'),
+          textElement: document.querySelector('#three .key__text'),
+        },
+      };
+
+      const clickAudio = new Audio('https://cdn.freesound.org/previews/378/378085_6260145-lq.mp3');
+      clickAudio.muted = config.muted;
+
+      const update = () => {
+        document.documentElement.dataset.theme = config.theme;
+      };
+
+      const ids = ['one', 'two', 'three'];
+
+      for (const id of ids) {
+        config[id].buttonElement.style.setProperty('--travel', config[id].travel);
+        config[id].buttonElement.style.setProperty('--saturate', config[id].saturation);
+        config[id].buttonElement.style.setProperty('--hue', config[id].hue);
+        config[id].buttonElement.style.setProperty('--brightness', config[id].brightness);
+
+        config[id].buttonElement.addEventListener('pointerdown', () => {
+          if (!config.muted) {
+            clickAudio.currentTime = 0;
+            clickAudio.play();
+          }
+        });
+      }
+
+      window.addEventListener('keydown', (event) => {
+        for (const id of ids) {
+          if (event.key === config[id].key) {
+            config[id].buttonElement.dataset.pressed = true;
+            if (!config.muted) {
+              clickAudio.currentTime = 0;
+              clickAudio.play();
+            }
+          }
+        }
+      });
+
+      window.addEventListener('keyup', (event) => {
+        for (const id of ids) {
+          if (event.key === config[id].key) config[id].buttonElement.dataset.pressed = false;
+        }
+      });
+
+      update();
+
+      document.querySelector('.keypad').style.setProperty('opacity', 1);
+    </script>
+  </body>
+</html>
